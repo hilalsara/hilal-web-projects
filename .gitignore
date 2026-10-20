@@ -1,6 +1,5 @@
-# Local artifacts
 .DS_Store
 node_modules/
 .env
 .env.*
-!\.env.example
+*.log
