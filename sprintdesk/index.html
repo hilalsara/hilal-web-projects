@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SprintDesk | Proje ve Görev Takibi</title><link rel="stylesheet" href="../shared/style.css">
+<style>
+.board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}.lane{background:#111b30;border:1px solid #32405d;border-radius:18px;padding:16px;min-height:260px}
+.lane h2{display:flex;align-items:center;justify-content:space-between}.task{background:#1d2a45;border:1px solid #3b4a6b;border-radius:12px;margin:12px 0;padding:14px}
+.task h3{margin:6px 0;font-size:16px}.task p{font-size:12px;margin:7px 0}.task .actions{display:flex;flex-wrap:wrap;gap:5px}
+.task button{font-size:11px;padding:6px 9px}.task small{color:#adbad3}.mini{background:#293650;border-radius:999px;padding:3px 9px;font-size:11px}
+.layout{display:grid;grid-template-columns:290px 1fr;gap:19px}.form textarea{min-height:80px}.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:15px}
+.filters input,.filters select{background:#10192c;color:#fff;border:1px solid #394867;border-radius:10px;padding:10px}
+@media(max-width:980px){.layout{grid-template-columns:1fr}.board{grid-template-columns:1fr}}@media(min-width:981px) and (max-width:1150px){.board{grid-template-columns:1fr 1fr}}
+</style></head><body>
+<div class="wrap"><a class="back" href="../">← Portföye dön</a><header class="top"><div><p class="eyebrow">PROJECT MANAGEMENT / KANBAN</p><h1>Projenin kontrolü <span class="accent">sende.</span></h1><p>Görevlerini planla, ilerlemeyi takip et, teslim tarihlerini kaçırma.</p></div><button class="ghost" id="csv">↓ CSV indir</button></header>
+<section class="statrow"><div class="stat"><small>Toplam görev</small><strong id="total">0</strong></div><div class="stat"><small>Tamamlanan</small><strong id="completed">0</strong></div><div class="stat"><small>Geciken aktif görev</small><strong id="overdue">0</strong></div></section>
+<div class="layout"><aside class="stack"><section class="panel"><h2 id="formTitle">Yeni görev</h2><form class="form" id="form">
+<label>Görev adı<input name="title" maxlength="100" required placeholder="Rapor ekranını hazırla"></label>
+<label>Sorumlu<input name="owner" maxlength="60" required placeholder="Ekip üyesi"></label>
+<label>Öncelik<select name="priority"><option>Normal</option><option>Yüksek</option><option>Kritik</option></select></label>
+<label>Durum<select name="status"><option>Yapılacak</option><option>Devam Ediyor</option><option>Tamamlandı</option></select></label>
+<label>Hedef tarih<input type="date" name="due" required></label>
+<label>Açıklama<textarea name="description" maxlength="500"></textarea></label>
+<div class="flex"><button type="submit">Görevi kaydet</button><button class="ghost" type="button" id="clear">Temizle</button></div></form><div id="notice" class="toast" role="status"></div>
+<p class="hint">Bu bir tarayıcı demosudur. Veri yalnızca kullandığın cihazda saklanır.</p></section></aside>
+<section class="panel"><div class="filters"><input id="search" aria-label="Görevlerde ara" placeholder="🔎 Görevlerde ara..." style="flex:1;min-width:180px">
+<select id="priorityFilter" aria-label="Önceliğe göre filtrele"><option value="">Tüm öncelikler</option><option>Normal</option><option>Yüksek</option><option>Kritik</option></select></div>
+<div class="board"><section class="lane"><h2>📋 Yapılacak <span class="mini" id="todoCount">0</span></h2><div id="todo"></div></section>
+<section class="lane"><h2>⚡ Devam Ediyor <span class="mini" id="doingCount">0</span></h2><div id="doing"></div></section>
+<section class="lane"><h2>✓ Tamamlandı <span class="mini" id="doneCount">0</span></h2><div id="done"></div></section></div>
+</section></div><footer>SprintDesk · Portföy demosu · <strong>Designed &amp; Developed by Hilal</strong></footer></div>
+<script src="../shared/utils.js"></script><script src="app.js"></script></body></html>
